@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Updates Section</title>
+  <!-- Critical inline CSS to render a lightweight first paint quickly -->
+  <style>
+    html,body{height:100%;}
+    body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:#071028;color:#e6eef8;-webkit-font-smoothing:antialiased}
+    .wrap{max-width:800px;margin:0 auto;padding:16px}
+    .card{background:#0b1220;border-radius:12px;padding:12px}
+    header{display:flex;align-items:center;gap:12px}
+    button{cursor:pointer}
+  </style>
+  <!-- Load the full stylesheet asynchronously to avoid blocking first paint -->
+  <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="style.css"></noscript>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <h1>📜 التحديثات</h1>
+        <small>كل التحديثات مخزنة هنا</small>
+  <button id="changeRoleBtn" class="change-role-bt  n" type="button">تغير المنصب</button>
+      </header>
+
+      <div id="messages"></div>
+
+      <!-- Composer is only visible if admin -->
+      <div id="composerBox" class="composer" style="display:none;">
+        <textarea id="textInput" placeholder="Write a message..."></textarea>
+        <button id="sendBtn">ارسل</button>
+      </div>
+      <div id="infoBox" class="hint"></div>
+    </div>
+  </div>
+
+  <!-- Admin/User choice modal -->
+  <div class="overlay" id="roleOverlay">
+    <div class="modal">
+      <h2>من انت</h2>
+  <button id="chooseUser" type="button">User</button>
+  <button id="chooseAdmin" type="button">Admin</button>
+      <div id="adminPassField" style="display:none; margin-top:10px;">
+  <input type="password" id="adminPass" placeholder="Enter Admin Password">
+  <button id="confirmAdmin" type="button">Confirm</button>
+      </div>
+      <div id="errorBox" class="hint"></div>
+    </div>
+  </div>
+
+  <!-- Optional Firebase SDK and project config: drop a file named `config.js` (see config.sample.js)
+       If `window.FIREBASE_CONFIG` is present the app will use Firestore to sync messages across visitors.
+       We use the Firebase compat libraries via CDN for a tiny integration that works on GitHub Pages. -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js" defer></script>
+  <!-- Load user's Firebase config if they created one from config.sample.js -->
+  <script src="config.js" defer onerror="/* config.js not found - falling back to localStorage */"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
